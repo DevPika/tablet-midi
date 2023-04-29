@@ -40,10 +40,7 @@ protected:
   void scribble_draw_brush(double x, double y, double pressure);
 
   //Member widgets:
-  Gtk::Frame m_Frame_Checkerboard, m_Frame_Scribble;
-  Gtk::Box m_VBox;
-  Gtk::Label m_Label_Checkerboard, m_Label_Scribble;
-  Gtk::DrawingArea m_DrawingArea_Checkerboard, m_DrawingArea_Scribble;
+  Gtk::DrawingArea m_DrawingArea_Scribble;
 
   Cairo::RefPtr<Cairo::ImageSurface> m_surface;
 //   Glib::RefPtr<Gtk::GestureDrag> m_drag;
@@ -59,39 +56,13 @@ protected:
 // }
 
 Example_DrawingArea::Example_DrawingArea()
-:
-  m_VBox(Gtk::Orientation::VERTICAL, 8)
 {
-  set_title("Drawing Area");
+  set_child(m_DrawingArea_Scribble);
+  set_default_size(200, 200);
+  // TODO Not working
+  // fullscreen();
 
-  m_VBox.set_margin(16);
-  set_child(m_VBox);
-
-  /*
-   * Create the checkerboard area
-   */
-  m_Label_Checkerboard.set_markup("<u>Checkerboard pattern</u>");
-  m_VBox.append(m_Label_Checkerboard);
-
-  m_Frame_Checkerboard.set_expand(true);
-  m_VBox.append(m_Frame_Checkerboard);
-
-  /* set a minimum size */
-  m_DrawingArea_Checkerboard.set_content_width(100);
-  m_DrawingArea_Checkerboard.set_content_height(100);
-  m_Frame_Checkerboard.set_child(m_DrawingArea_Checkerboard);
-
-  m_DrawingArea_Checkerboard.set_draw_func(
-      sigc::mem_fun(*this, &Example_DrawingArea::on_drawingarea_checkerboard_draw));
-
-  /*
-   * Create the scribble area
-   */
-  m_Label_Scribble.set_markup("<u>Scribble area</u>");
-  m_VBox.append(m_Label_Scribble);
-
-  m_Frame_Scribble.set_expand(true);
-  m_VBox.append(m_Frame_Scribble);
+  // m_DrawingArea_Scribble.set_expand(true);
 
   // m_drag = Gtk::GestureDrag::create();
   // m_drag->set_button(GDK_BUTTON_PRIMARY);
@@ -102,9 +73,8 @@ Example_DrawingArea::Example_DrawingArea()
   m_DrawingArea_Scribble.add_controller(m_stylus);
 
   /* set a minimum size */
-  m_DrawingArea_Scribble.set_content_width(100);
-  m_DrawingArea_Scribble.set_content_height(100);
-  m_Frame_Scribble.set_child(m_DrawingArea_Scribble);
+  m_DrawingArea_Scribble.set_content_width(200);
+  m_DrawingArea_Scribble.set_content_height(200);
 
   m_DrawingArea_Scribble.set_draw_func(
       sigc::mem_fun(*this, &Example_DrawingArea::on_drawingarea_scribble_draw));
