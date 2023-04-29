@@ -174,7 +174,17 @@ void Example_DrawingArea::on_drawingarea_scribble_stylus_down(double x, double y
 }
 
 void Example_DrawingArea::on_drawingarea_scribble_stylus_motion(double x, double y) {
-  // TODO Process backlog
+  auto numAxes = m_stylus->get_device()->property_n_axes();
+  for (auto event : m_stylus->get_backlog()) {
+    auto eventPressure = (guint)Gdk::AxisUse::PRESSURE <= numAxes ?
+      event.get_value_at_axis((guint)Gdk::AxisUse::PRESSURE) : 1;
+
+    scribble_draw_brush(
+      event.get_value_at_axis((guint)Gdk::AxisUse::X),
+      event.get_value_at_axis((guint)Gdk::AxisUse::Y),
+      eventPressure);
+  }
+
   std::optional<double> pressure = m_stylus->get_axis(Gdk::AxisUse::PRESSURE);
   if (!pressure) {
     scribble_draw_brush(x, y, 1);
