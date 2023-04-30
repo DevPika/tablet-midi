@@ -18,9 +18,18 @@
 * 
 * 
 * 
+* https://www.youtube.com/watch?v=2BccxWkUgaU
+* https://www.youtube.com/watch?v=02Gjb16CbkY
+* 
+* https://www.music.mcgill.ca/~gary/rtmidi/index.html
+* https://packages.ubuntu.com/lunar/librtmidi-dev
+* "pkg-config --cflags --libs rtmidi"
+* 
+* https://askubuntu.com/questions/1223229/how-to-monitor-midi-output
+* http://tedfelix.com/linux/linux-midi.html
 * 
 * https://mesonbuild.com/
-* 
+* https://github.com/jcelerier/libremidi
 * 
 * 
 * 
