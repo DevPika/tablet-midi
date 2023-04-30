@@ -3,7 +3,7 @@
 	"tasks": [
 		{
 			"type": "cppbuild",
-			"label": "C/C++: g++ build active file with gtkmm4",
+			"label": "C/C++: g++ build active file with gtkmm4 and rtmidi",
 			"command": "/bin/g++",
 			"args": [
 				"-fdiagnostics-color=always",
@@ -11,7 +11,8 @@
 				"${file}",
 				"-o",
 				"${fileDirname}/${fileBasenameNoExtension}",
-				"`pkg-config --cflags --libs gtkmm-4.0`"
+				"`pkg-config --cflags --libs gtkmm-4.0`",
+				"`pkg-config --cflags --libs rtmidi`"
 			],
 			"options": {
 				"cwd": "${fileDirname}"
